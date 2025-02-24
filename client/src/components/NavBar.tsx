@@ -1,3 +1,5 @@
+import AniVault2 from '../../../images/AniVault2.png';
+
 const NavBar: React.FC = () => {
     return (
         <>
@@ -8,7 +10,9 @@ const NavBar: React.FC = () => {
                     </button>
                 </div>
                 <div className="navbar-center">
-                    <a className="btn btn-ghost text-3xl font-bold">Ani-Filter</a>
+                    <a className="btn btn-ghost text-3xl font-bold">
+                        <img src={AniVault2} width="200" height="100" alt="AniVault logo"/>
+                    </a>
                 </div>
                 <div className="navbar-end">
                     <button className="btn btn-ghost btn-circle">
