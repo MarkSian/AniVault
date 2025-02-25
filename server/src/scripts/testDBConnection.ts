@@ -1,19 +1,14 @@
-import { Client } from 'pg';
+import connectDB from '../config/db';
 
-const client = new Client({
-    host: 'localhost',
-    port: 5432,
-    user: 'your_username',
-    password: 'your_password',
-    database: 'your_database'
-});
-
-client.connect()
-    .then(() => {
+const testDBConnection = async () => {
+    try {
+        await connectDB();
         console.log('Database connection successful');
-        client.end();
-    })
-    .catch(err => {
-        console.error('Database connection failed', err);
-        client.end();
-    });
+        process.exit(0);
+    } catch (error) {
+        console.error('Database connection failed', error);
+        process.exit(1);
+    }
+};
+
+testDBConnection();

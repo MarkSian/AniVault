@@ -3,8 +3,12 @@ import { ApolloServer } from 'apollo-server-express';
 import mongoose from 'mongoose';
 import typeDefs from './schema/movieSchema';
 import resolvers from './resolvers/movieResolver';
-import connectDB  from './config/db';
+import connectDB from './config/db';
 import { Application } from 'express';
+import dotenv from 'dotenv';
+
+// Load environment variables from .env file
+dotenv.config();
 
 const startServer = async () => {
     const app: Application = express();
