@@ -9,14 +9,21 @@
     "dev": "ts-node-dev src/index.ts"
   },
   "dependencies": {
+<<<<<<< HEAD
     "@types/pg": "^8.11.11",
+=======
+>>>>>>> origin/main
     "apollo-server-express": "^3.0.0",
     "axios": "^1.7.9",
     "express": "^4.17.1",
     "graphql": "^15.5.0",
     "graphql-yoga": "^1.18.3",
+<<<<<<< HEAD
     "mongoose": "^5.13.3",
     "pg": "^8.13.3"
+=======
+    "mongoose": "^5.13.3"
+>>>>>>> origin/main
   },
   "devDependencies": {
     "@types/axios": "^0.9.36",
