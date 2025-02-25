@@ -1,6 +1,7 @@
-import { gql } from 'apollo-server-express';
-
-const movieSchema = gql`
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const apollo_server_express_1 = require("apollo-server-express");
+const movieSchema = (0, apollo_server_express_1.gql) `
   type Movie {
     id: ID!
     title: String!
@@ -20,5 +21,4 @@ const movieSchema = gql`
     deleteMovie(id: ID!): Movie
   }
 `;
-
-export default movieSchema;
+exports.default = movieSchema;
