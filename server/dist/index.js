@@ -8,6 +8,9 @@ const apollo_server_express_1 = require("apollo-server-express");
 const movieSchema_1 = __importDefault(require("./schema/movieSchema"));
 const movieResolver_1 = __importDefault(require("./resolvers/movieResolver"));
 const db_1 = __importDefault(require("./config/db"));
+const dotenv_1 = __importDefault(require("dotenv"));
+// Load environment variables from .env file
+dotenv_1.default.config();
 const startServer = async () => {
     const app = (0, express_1.default)();
     // Connect to MongoDB

@@ -1,31 +1,28 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
+const mongodb_1 = require("mongodb");
+const movieModel_1 = __importDefault(require("../models/movieModel"));
 const resolvers = {
     Query: {
         getMovies: async () => {
             // Fetch movies from your database
-            return [
-                { id: '1', title: 'Inception', director: 'Christopher Nolan', releaseYear: 2010, genre: 'Sci-Fi' },
-                { id: '2', title: 'Interstellar', director: 'Christopher Nolan', releaseYear: 2014, genre: 'Sci-Fi' },
-            ];
+            return await movieModel_1.default.find({});
         },
         getMovie: async (_, { id }) => {
-            // Fetch a single movie by ID from your database
-            return { id, title: 'Inception', director: 'Christopher Nolan', releaseYear: 2010, genre: 'Sci-Fi' };
-        },
-    },
-    Mutation: {
-        addMovie: async (_, { title, director, releaseYear, genre }) => {
-            // Add a new movie to your database
-            return { id: '3', title, director, releaseYear, genre };
-        },
-        updateMovie: async (_, { id, title, director, releaseYear, genre }) => {
-            // Update an existing movie in your database
-            return { id, title: title || 'Inception', director: director || 'Christopher Nolan', releaseYear: releaseYear || 2010, genre: genre || 'Sci-Fi' };
-        },
-        deleteMovie: async (_, { id }) => {
-            // Delete a movie from your database
-            return { id, title: 'Inception', director: 'Christopher Nolan', releaseYear: 2010, genre: 'Sci-Fi' };
+            // Convert the string id to an ObjectId
+            const objectId = new mongodb_1.ObjectId(id);
+            const movie = await movieModel_1.default.findById(objectId);
+            // Ensure the nested fields for images are correctly mapped
+            if (movie && movie.images) {
+                movie.images = {
+                    jpg: movie.images.jpg || { image_url: null, small_image_url: null, large_image_url: null },
+                    webp: movie.images.webp || { image_url: null, small_image_url: null, large_image_url: null }
+                };
+            }
+            return movie;
         },
     },
 };
