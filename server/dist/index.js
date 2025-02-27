@@ -5,10 +5,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const apollo_server_express_1 = require("apollo-server-express");
-const movieSchema_1 = __importDefault(require("./schema/movieSchema"));
-const movieResolver_1 = __importDefault(require("./resolvers/movieResolver"));
+const schema_1 = __importDefault(require("./schema"));
+const resolvers_1 = __importDefault(require("./resolvers"));
 const db_1 = __importDefault(require("./config/db"));
 const dotenv_1 = __importDefault(require("dotenv"));
+const auth_1 = require("./middleware/auth");
 // Load environment variables from .env file
 dotenv_1.default.config();
 const startServer = async () => {
@@ -16,7 +17,11 @@ const startServer = async () => {
     // Connect to MongoDB
     await (0, db_1.default)();
     // Initialize Apollo Server
-    const server = new apollo_server_express_1.ApolloServer({ typeDefs: movieSchema_1.default, resolvers: movieResolver_1.default });
+    const server = new apollo_server_express_1.ApolloServer({
+        typeDefs: schema_1.default,
+        resolvers: resolvers_1.default,
+        context: ({ req }) => (0, auth_1.authenticateToken)({ req }),
+    });
     await server.start();
     server.applyMiddleware({ app: app });
     // Start the server

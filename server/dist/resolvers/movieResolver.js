@@ -9,7 +9,9 @@ const resolvers = {
     Query: {
         getMovies: async () => {
             // Fetch movies from your database
-            return await movieModel_1.default.find({});
+            const movies = await movieModel_1.default.find({});
+            // Filter out movies with trailers that do not have a URL
+            return movies.filter((movie) => movie.trailer && movie.trailer.url);
         },
         getMovie: async (_, { id }) => {
             // Convert the string id to an ObjectId
@@ -23,6 +25,20 @@ const resolvers = {
                 };
             }
             return movie;
+        },
+    },
+    Mutation: {
+        addMovie: async (_, args) => {
+            const movie = new movieModel_1.default(args);
+            return await movie.save();
+        },
+        updateMovie: async (_, { id, ...args }) => {
+            const objectId = new mongodb_1.ObjectId(id);
+            return await movieModel_1.default.findByIdAndUpdate(objectId, args, { new: true });
+        },
+        deleteMovie: async (_, { id }) => {
+            const objectId = new mongodb_1.ObjectId(id);
+            return await movieModel_1.default.findByIdAndDelete(objectId);
         },
     },
 };

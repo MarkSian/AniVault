@@ -25,6 +25,20 @@ const resolvers = {
       return movie;
     },
   },
+  Mutation: {
+    addMovie: async (_: any, args: any) => {
+      const movie = new Movie(args);
+      return await movie.save();
+    },
+    updateMovie: async (_: any, { id, ...args }: { id: string }) => {
+      const objectId = new ObjectId(id);
+      return await Movie.findByIdAndUpdate(objectId, args, { new: true });
+    },
+    deleteMovie: async (_: any, { id }: { id: string }) => {
+      const objectId = new ObjectId(id);
+      return await Movie.findByIdAndDelete(objectId);
+    },
+  },
 };
 
 export default resolvers;
