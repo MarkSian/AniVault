@@ -11,21 +11,23 @@ function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(!!localStorage.getItem('token'));
 
   useEffect(() => {
-    const handleStorageChange = () => {
+    const handleAuthChange = () => {
       const token = localStorage.getItem('token');
       setIsAuthenticated(!!token);
+      console.log('Auth change detected, isAuthenticated:', !!token);
     };
 
-    window.addEventListener('storage', handleStorageChange);
+    window.addEventListener('authChange', handleAuthChange);
 
     return () => {
-      window.removeEventListener('storage', handleStorageChange);
+      window.removeEventListener('authChange', handleAuthChange);
     };
   }, []);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
     setIsAuthenticated(!!token);
+    console.log('Initial token check, isAuthenticated:', !!token);
   }, []);
 
   return (

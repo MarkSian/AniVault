@@ -21,6 +21,7 @@ const Auth: React.FC = () => {
         const { data } = await login({ variables: { username, password } });
         localStorage.setItem('token', data.login.token);
         console.log('Token set in localStorage:', data.login.token);
+        window.dispatchEvent(new Event('authChange')); // Dispatch custom event
         console.log('Before navigate call');
         navigate('/'); // Navigate to home route on successful login
         console.log('After navigate call');
@@ -29,6 +30,7 @@ const Auth: React.FC = () => {
         const { data } = await signup({ variables: { username, email, password } });
         localStorage.setItem('token', data.signup.token);
         console.log('Token set in localStorage:', data.signup.token);
+        window.dispatchEvent(new Event('authChange')); // Dispatch custom event
         console.log('Before navigate call');
         navigate('/'); // Navigate to home route on successful signup
         console.log('After navigate call');
