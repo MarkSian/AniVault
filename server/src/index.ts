@@ -1,11 +1,11 @@
 import express from 'express';
 import { ApolloServer } from 'apollo-server-express';
-import mongoose from 'mongoose';
-import typeDefs from './schema/movieSchema';
-import resolvers from './resolvers/movieResolver';
+import typeDefs from './schema';
+import resolvers from './resolvers';
 import connectDB from './config/db';
 import { Application } from 'express';
 import dotenv from 'dotenv';
+import { authenticateToken } from './middleware/auth';
 
 // Load environment variables from .env file
 dotenv.config();
@@ -17,7 +17,11 @@ const startServer = async () => {
     await connectDB();
 
     // Initialize Apollo Server
-    const server = new ApolloServer({ typeDefs, resolvers });
+    const server = new ApolloServer({
+        typeDefs,
+        resolvers,
+        context: ({ req }) => authenticateToken({ req }),
+    });
     await server.start();
     server.applyMiddleware({ app: app as any });
 

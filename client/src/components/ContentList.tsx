@@ -17,7 +17,7 @@ const GET_MOVIES = gql`
 
 const ContentList: React.FC = () => {
   const { loading, error, data } = useQuery(GET_MOVIES);
-  const [trailerUrl, setTrailerUrl] = useState<string>('');
+  const [trailerUrl, setTrailerUrl] = useState<string | null>(null);
 
   useEffect(() => {
     if (data && data.getMovies) {
@@ -39,17 +39,19 @@ const ContentList: React.FC = () => {
   return (
     <div className="card center-container bg-slate-100/5 card-compact mt-4 w-96 shadow-xl">
       <figure className="aspect-[16/9]">
-        <iframe
-          className="w-full h-full"
-          width="1044"
-          height="587"
-          src={trailerUrl}
-          title="Anime Trailer"
-          frameBorder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerPolicy="strict-origin-when-cross-origin"
-          allowFullScreen
-        ></iframe>
+        {trailerUrl && (
+          <iframe
+            className="w-full h-full"
+            width="1044"
+            height="587"
+            src={trailerUrl}
+            title="Anime Trailer"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerPolicy="strict-origin-when-cross-origin"
+            allowFullScreen
+          ></iframe>
+        )}
       </figure>
       <div className="card-body text-left">
         <h2 className="card-title font-bold cursor-pointer">Anime Title</h2>
