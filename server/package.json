@@ -5,7 +5,7 @@
   "main": "src/index.ts",
   "scripts": {
     "start": "ts-node src/index.ts",
-    "build": "tsc",
+    "build": "tsc && npm run populate-database",
     "dev": "ts-node-dev src/index.ts",
     "populate-database": "ts-node src/scripts/populateDB.ts"
     
