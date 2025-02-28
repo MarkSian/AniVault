@@ -17,8 +17,8 @@ const startServer = async () => {
     // Connect to MongoDB
     await connectDB();
 
-    // Serve static files from the 'public' directory
-    app.use(express.static(path.join(__dirname, '..', '..', 'public')));
+    // Serve static files from the 'client' directory
+    app.use(express.static(path.join(__dirname, '..', '..', 'client')));
 
     // Initialize Apollo Server
     const server = new ApolloServer({
@@ -31,7 +31,12 @@ const startServer = async () => {
 
     // Handle root route
     app.get('/', (req, res) => {
-        res.sendFile(path.join(__dirname, '..', '..', 'public', 'index.html'));
+        res.sendFile(path.join(__dirname, '..', '..', 'client', 'index.html'));
+    });
+
+    // Handle all other routes
+    app.get('*', (req, res) => {
+        res.sendFile(path.join(__dirname, '..', '..', 'client', 'index.html'));
     });
 
     // Start the server
