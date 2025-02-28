@@ -6,7 +6,6 @@ import connectDB from './config/db';
 import { Application } from 'express';
 import dotenv from 'dotenv';
 import { authenticateToken } from './middleware/auth';
-import path from 'path';
 
 // Load environment variables from .env file
 dotenv.config();
@@ -17,9 +16,6 @@ const startServer = async () => {
     // Connect to MongoDB
     await connectDB();
 
-    // Serve static files from the 'client' directory
-    app.use(express.static(path.join(__dirname, '..', '..', 'client')));
-
     // Initialize Apollo Server
     const server = new ApolloServer({
         typeDefs,
@@ -28,16 +24,6 @@ const startServer = async () => {
     });
     await server.start();
     server.applyMiddleware({ app: app as any });
-
-    // Handle root route
-    app.get('/', (req, res) => {
-        res.sendFile(path.join(__dirname, '..', '..', 'client', 'index.html'));
-    });
-
-    // Handle all other routes
-    app.get('*', (req, res) => {
-        res.sendFile(path.join(__dirname, '..', '..', 'client', 'index.html'));
-    });
 
     // Start the server
     const PORT = process.env.PORT || 4000;
