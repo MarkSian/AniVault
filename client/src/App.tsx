@@ -1,8 +1,5 @@
 import './App.css';
-import NavBar from './components/NavBar';
-import MoodFilter from './components/MoodFilter';
 import ContentContainer from './components/ContentContainer';
-import Footer from './components/Footer';
 import Auth from './components/Auth';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
