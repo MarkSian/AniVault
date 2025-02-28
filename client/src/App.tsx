@@ -29,20 +29,15 @@ function App() {
 
   return (
     <Router>
-      
       <Routes>
         <Route path="/auth" element={<Auth />} />
         <Route path="/" element={isAuthenticated ? (
-          <>
-            <ContentContainer />
-            
-          </>
+          <ContentContainer />
         ) : (
           <Navigate to="/auth" />
         )} />
         <Route path="*" element={<Navigate to={isAuthenticated ? "/" : "/auth"} />} />
       </Routes>
-     
     </Router>
   );
 }
