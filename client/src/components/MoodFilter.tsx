@@ -7,7 +7,7 @@ interface MoodFilterProps {
   toggleGenre: (mood: string, genre: string) => void;
 }
 
-const MoodFilter: React.FC<MoodFilterProps> = ({ selectedGenre, toggleGenre }) => {
+const MoodFilter: React.FC<MoodFilterProps> = ({ toggleGenre }) => {
   return (
     <>
       <h1 className="my-6 grid lg:text-5xl text-4xl font-bold mood-center-container">

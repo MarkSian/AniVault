@@ -5,8 +5,11 @@
   "main": "src/index.ts",
   "scripts": {
     "start": "ts-node src/index.ts",
-    "build": "tsc",
-    "dev": "ts-node-dev src/index.ts"
+    "build": "tsc && npm run populate-database",
+    "dev": "ts-node-dev src/index.ts",
+    "populate-database": "ts-node src/scripts/populateDB.ts"
+    
+
   },
   "dependencies": {
     "@graphql-tools/merge": "^9.0.21",
