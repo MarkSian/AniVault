@@ -1,41 +1,29 @@
-import React, { useEffect, useState } from 'react';
-import { gql, useQuery } from '@apollo/client';
+import React from 'react';
 import Button from './Button';
 
-const GET_MOVIES = gql`
-  query GetMovies {
-    getMovies {
-      id
-      trailer {
-        url
-        youtube_id
-        embed_url
-      }
-    }
-  }
-`;
+interface ContentListProps {
+  trailerUrl: string | null;
+  title: string | null;
+  genres: string[];
+  aired: string | null;
+  score: number | null;
+  synopsis: string | null;
+  rating: string | null;
+  onNextClick: () => void;
+  onBackClick: () => void;
+}
 
-const ContentList: React.FC = () => {
-  const { loading, error, data } = useQuery(GET_MOVIES);
-  const [trailerUrl, setTrailerUrl] = useState<string | null>(null);
-
-  useEffect(() => {
-    if (data && data.getMovies) {
-      // Filter out movies with trailers that do not have a URL
-      const trailers = data.getMovies
-        .filter((movie: any) => movie.trailer && movie.trailer.url)
-        .map((movie: any) => movie.trailer.embed_url);
-
-      if (trailers.length > 0) {
-        const randomTrailer = trailers[Math.floor(Math.random() * trailers.length)];
-        setTrailerUrl(randomTrailer);
-      }
-    }
-  }, [data]);
-
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
-
+const ContentList: React.FC<ContentListProps> = ({
+  trailerUrl,
+  title,
+  genres,
+  aired,
+  score,
+  synopsis,
+  rating,
+  onNextClick,
+  onBackClick,
+}) => {
   return (
     <div className="card center-container bg-slate-100/5 card-compact mt-4 w-96 shadow-xl">
       <figure className="aspect-[16/9]">
@@ -54,22 +42,24 @@ const ContentList: React.FC = () => {
         )}
       </figure>
       <div className="card-body text-left">
-        <h2 className="card-title font-bold cursor-pointer">Anime Title</h2>
-        <p className="text-lg font-thin">2019 · 2h 3min · ⭐ 6.9/10</p>
+        <h2 className="card-title text-xl font-bold cursor-pointer">{title || 'Anime Title'}</h2>
+        <p className="text-sm font-thin">{aired} · ⭐ {score}</p>
+        <p className="text-sm font-thin">Rating: {rating}</p>
 
         <div className="mt-2 flex space-x-2">
-          <div className="badge badge-accent">accent</div>
-          <div className="badge badge-accent">accent</div>
+          {genres.map((genre, index) => (
+            <div key={index} className="badge badge-accent">
+              {genre}
+            </div>
+          ))}
         </div>
 
-        <p className="text-sm font-thin mt-2">
-          Anime Description Anime Description Anime Description Anime Description Anime Description Anime Description Anime Description
-        </p>
+        <p className="mt-3 font-thin text-md">{synopsis}</p>
 
         <div className="flex justify-between mt-3">
-          <Button text={"Back"} />
+          <Button text={"Back"} onClick={onBackClick} />
           <Button text={"Hide"} />
-          <Button text={"Next"} />
+          <Button text={"Next"} onClick={onNextClick} />
         </div>
       </div>
     </div>

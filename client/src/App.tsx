@@ -1,7 +1,7 @@
 import './App.css';
 import NavBar from './components/NavBar';
 import MoodFilter from './components/MoodFilter';
-import ContentList from './components/ContentList';
+import ContentContainer from './components/ContentContainer';
 import Footer from './components/Footer';
 import Auth from './components/Auth';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
@@ -32,20 +32,20 @@ function App() {
 
   return (
     <Router>
-      <NavBar />
+      
       <Routes>
         <Route path="/auth" element={<Auth />} />
         <Route path="/" element={isAuthenticated ? (
           <>
-            <ContentList />
-            <MoodFilter />
+            <ContentContainer />
+            
           </>
         ) : (
           <Navigate to="/auth" />
         )} />
         <Route path="*" element={<Navigate to={isAuthenticated ? "/" : "/auth"} />} />
       </Routes>
-      <Footer />
+     
     </Router>
   );
 }
