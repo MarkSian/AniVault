@@ -6,7 +6,7 @@ import './index.css';
 import App from './App.tsx';
 
 const httpLink = createHttpLink({
-  uri: 'https://anivault.onrender.com/graphql', // Replace with your GraphQL endpoint
+  uri: 'http://localhost:4000/graphql', // Replace with your GraphQL endpoint
 });
 
 const authLink = setContext((_, { headers }) => {
