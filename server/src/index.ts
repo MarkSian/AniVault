@@ -3,47 +3,50 @@ import { ApolloServer } from 'apollo-server-express';
 import typeDefs from './schema';
 import resolvers from './resolvers';
 import connectDB from './config/db';
-import { Application } from 'express';
-import dotenv from 'dotenv';
 import { authenticateToken } from './middleware/auth';
 import path from 'path';
+import type { Request, Response } from 'express';
+import { fileURLToPath } from 'node:url';
+import { expressMiddleware } from '@apollo/server/express4';
 
-// Load environment variables from .env file
-dotenv.config();
 
-const startServer = async () => {
-    const app: Application = express();
-    
-    // Connect to MongoDB
-    await connectDB();
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-    // Serve static files from the 'client' directory
-    app.use(express.static(path.join(__dirname, '..', '..', 'client')));
-
-    // Initialize Apollo Server
-    const server = new ApolloServer({
-        typeDefs,
-        resolvers,
-        context: ({ req }) => authenticateToken({ req }),
-    });
+const server = new ApolloServer({
+    typeDefs,
+    resolvers,
+  });
+  
+  const startApolloServer = async () => {
     await server.start();
-    server.applyMiddleware({ app: app as any });
-
-    // Handle root route
-    app.get('/', (req, res) => {
-        res.sendFile(path.join(__dirname, '..', '..', 'client', 'index.html'));
-    });
-
-    // Handle all other routes
-    app.get('*', (req, res) => {
-        res.sendFile(path.join(__dirname, '..', '..', 'client', 'index.html'));
-    });
-
-    // Start the server
-    const PORT = process.env.PORT || 4000;
+    await connectDB();
+  
+    const PORT = process.env.PORT || 3001;
+    const app = express();
+  
+    app.use(express.urlencoded({ extended: false }));
+    app.use(express.json());
+  
+    app.use('/graphql', expressMiddleware(server as any,
+      {
+        context: authenticateToken as any
+      }
+    ));
+  
+    if (process.env.NODE_ENV === 'production') {
+      app.use(express.static(path.join(__dirname, '../../client/dist')));
+      app.get('*', (_req: Request, res: Response) => {
+         res.sendFile(path.join(__dirname, '../../client/dist/index.html'));
+        });
+    }
     app.listen(PORT, () => {
-        console.log(`Server is running on http://localhost:${PORT}${server.graphqlPath}`);
+      console.log(`API server running on port ${PORT}!`);
+      console.log(`Use GraphQL at http://localhost:${PORT}/graphql`);
     });
-};
-
-startServer();
+  };
+  
+  startApolloServer();
+  
+  
+  
