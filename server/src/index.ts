@@ -18,7 +18,7 @@ const startServer = async () => {
     await connectDB();
 
     // Serve static files from the 'public' directory
-    app.use(express.static(path.join(__dirname, 'public')));
+    app.use(express.static(path.join(__dirname, '..', '..', 'public')));
 
     // Initialize Apollo Server
     const server = new ApolloServer({
@@ -31,7 +31,7 @@ const startServer = async () => {
 
     // Handle root route
     app.get('/', (req, res) => {
-        res.sendFile(path.join(__dirname, 'public', 'index.html'));
+        res.sendFile(path.join(__dirname, '..', '..', 'public', 'index.html'));
     });
 
     // Start the server
