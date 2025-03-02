@@ -41,81 +41,47 @@ const Auth: React.FC = () => {
   };
 
   return (
-    <div
-      className="flex items-start justify-center min-h-screen bg-cover bg-center pt-12" 
-      style={{
-        backgroundImage: "url('https://wallpapercave.com/wp/wp3971576.jpg')" // Background image
-      }}
-    >
-      <div className="card w-96 bg-gray-900 bg-opacity-80 text-white shadow-xl p-6 backdrop-blur-md">
-        <h2 className="text-2xl font-bold text-center text-primary">
-          {isLogin ? "Login" : "Sign Up"}
-        </h2>
-        <form onSubmit={handleSubmit} className="space-y-4 mt-4">
-          {/* Username Input */}
+    <div className="auth-container">
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label htmlFor="username">Username:</label>
+          <input
+            type="text"
+            id="username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          />
+        </div>
+        {!isLogin && (
           <div>
-            <label className="label text-gray-300" htmlFor="username">
-              Username
-            </label>
+            <label htmlFor="email">Email:</label>
             <input
-              type="text"
-              id="username"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              type="email"
+              id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               required
-              className="input input-bordered w-full bg-gray-700 text-white"
-              placeholder="Enter your username"
             />
           </div>
-
-          {/* Email Input (only for sign-up) */}
-          {!isLogin && (
-            <div>
-              <label className="label text-gray-300" htmlFor="email">
-                Email
-              </label>
-              <input
-                type="email"
-                id="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                className="input input-bordered w-full bg-gray-700 text-white"
-                placeholder="Enter your email"
-              />
-            </div>
-          )}
-
-          {/* Password Input */}
-          <div>
-            <label className="label text-gray-300" htmlFor="password">
-              Password
-            </label>
-            <input
-              type="password"
-              id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              className="input input-bordered w-full bg-gray-700 text-white"
-              placeholder="Enter your password"
-            />
-          </div>
-
-          {/* Submit Button */}
-          <button type="submit" className="btn btn-primary w-full">
-            {isLogin ? "Login" : "Sign Up"}
-          </button>
-        </form>
-
-        {/* Toggle Between Login & Sign Up */}
-        <p
-          className="text-center text-sm text-gray-400 mt-4 cursor-pointer hover:text-primary"
-          onClick={() => setIsLogin(!isLogin)}
-        >
-          {isLogin ? "Need an account? Sign Up" : "Already have an account? Login"}
+        )}
+        <div>
+          <label htmlFor="password">Password:</label>
+          <input
+            type="password"
+            id="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </div>
+        <button type="submit">
+          {isLogin ? 'Login' : 'Sign Up'}
+        </button>
+        <p onClick={() => setIsLogin(!isLogin)}>
+          {isLogin ? 'Need an account? Sign Up' : 'Already have an account? Login'}
         </p>
-      </div>
+      </form>
     </div>
   );
 };
