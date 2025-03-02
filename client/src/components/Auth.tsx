@@ -42,10 +42,7 @@ const Auth: React.FC = () => {
 
   return (
     <div
-      className="flex items-start justify-center min-h-screen bg-cover bg-center pt-12" 
-      style={{
-        backgroundImage: "url('https://wallpapercave.com/wp/wp3971576.jpg')" // Background image
-      }}
+      className="flex items-start justify-center min-h-screen bg-cover bg-center pt-12 bg-[url('https://wallpapercave.com/wp/wp3971576.jpg')]"
     >
       <div className="card w-96 bg-gray-900 bg-opacity-80 text-white shadow-xl p-6 backdrop-blur-md">
         <h2 className="text-2xl font-bold text-center text-primary">
