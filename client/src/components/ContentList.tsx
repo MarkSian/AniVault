@@ -58,7 +58,6 @@ const ContentList: React.FC<ContentListProps> = ({
 
         <div className="flex justify-between mt-3">
           <Button text={"Back"} onClick={onBackClick} />
-          <Button text={"Hide"} />
           <Button text={"Next"} onClick={onNextClick} />
         </div>
       </div>

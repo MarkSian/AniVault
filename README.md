@@ -19,7 +19,7 @@ https://github.com/MarkSian/AniVault
 
 ## Description
 
-The world of anime is quite vast. There is a plethora of genres from adventure and comedy to horror and romance. It can be a bit intimidating and difficult to find what's right for you. That's where AniVault comes in. Whether you're a veteran otaku or a newbie weeb this application makes it easy to find animes that are new and exciting, or perhaps old and nostalgic animes that have slipped from your memory. Choose your desired genre and let AniVault generate random animes for you to pick from. You can skip to the next anime, hide them so that AniVault won't show them to you again, or go back just in case you want to give a suggestion another look. With AniVault you'll have access to a massive collection of amazing animes. So start searching and get to bingeing.
+The world of anime is quite vast. There is a plethora of genres from adventure and comedy to horror and romance. It can be a bit intimidating and difficult to find what's right for you. That's where AniVault comes in. Whether you're a veteran otaku or a newbie weeb this application makes it easy to find animes that are new and exciting, or perhaps old and nostalgic animes that have slipped from your memory. Choose your desired genre and let AniVault generate random animes for you to pick from. You can skip to the next anime, or go back just in case you want to give a suggestion another look. With AniVault you'll have access to a massive collection of amazing animes. So start searching and get to bingeing.
 
 ## Table of Contents
 
