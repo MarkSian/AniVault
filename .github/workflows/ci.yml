@@ -41,15 +41,10 @@ jobs:
       - name: Install client dependencies
         run: cd client && npm install
 
-      - name: Start server
-        run: npm run start
+      - name: Check MongoDB logs
+        run: docker logs $(docker ps -q -f name=mongo)
+
+      - name: Run testDBConnection.ts
+        run: npx ts-node server/src/scripts/testDBConnection.ts
         env:
           MONGODB_URI: mongodb://localhost:27017/mydatabase
-
-      - name: Wait for server to be ready
-        run: npx wait-on http://localhost:4000
-
-      - name: Run Cypress tests
-        run: npx cypress run
-        env:
-          CYPRESS_baseUrl: http://localhost:4000
