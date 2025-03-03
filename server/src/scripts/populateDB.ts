@@ -9,8 +9,12 @@ const populateDB = async () => {
   try {
     await connectDB();
 
+    // Clear existing data
+    await Movie.deleteMany({});
+    console.log('Cleared existing data');
+
     let page = 1;
-    const maxPages = 20; // Set the maximum number of pages to fetch
+    const maxPages = 15; // Set the maximum number of pages to fetch
 
     while (page <= maxPages) {
       try {
