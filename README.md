@@ -1,5 +1,5 @@
 # AniVault
-DEPLOYED WEBSITE HERE
+https://anivault.onrender.com/
 
 ![GitHub License](https://img.shields.io/badge/license-MIT-orange.svg)
 
@@ -7,7 +7,7 @@ DEPLOYED WEBSITE HERE
 
 ## Questions 
 
-Adam: 
+Adam: https://github.com/akovaly
 
 Greg: https://github.com/CodeGA366
 
@@ -19,7 +19,7 @@ https://github.com/MarkSian/AniVault
 
 ## Description
 
-The world of anime is quite vast. There is a plethora of genres from adventure and comedy to horror and romance. It can be a bit intimidating and difficult to find what's right for you. That's where AniVault comes in. This application makes it easy to find new and exciting animes, or perhaps old and nostalgic animes that have slipped your memory. Choose your desired genre and let AniVault generate random animes for you to pick from. You can save them to your profile, hide them so that AniVault won't show them to you again, skip to the next anime, or go back just in case you want to give a suggestion another look. With AniVault you'll have a list of amazing animes in no time. So start searching and get to binging.
+The world of anime is quite vast. There is a plethora of genres from adventure and comedy to horror and romance. It can be a bit intimidating and difficult to find what's right for you. That's where AniVault comes in. Whether you're a veteran otaku or a newbie weeb this application makes it easy to find animes that are new and exciting, or perhaps old and nostalgic animes that have slipped from your memory. Choose your desired genre and let AniVault generate random animes for you to pick from. You can skip to the next anime, hide them so that AniVault won't show them to you again, or go back just in case you want to give a suggestion another look. With AniVault you'll have access to a massive collection of amazing animes. So start searching and get to bingeing.
 
 ## Table of Contents
 
@@ -36,8 +36,16 @@ The world of anime is quite vast. There is a plethora of genres from adventure a
 npm install, npm run build, npm run start
 
 ## Usage
+![alt text](images/anivault-ss1.png)
+![alt text](images/anivault-ss2.png)
+As a user I can use AniVault to search for animes. Upon opening the application I am presented with a login/sign up page.
 
-Users can use AniVault to search for and save animes to their personal account. On the home screen the user is presented with a home button, logo, sign up/login button, and a variety of genre buttons. If you click on one of these genre buttons you will be given a random anime that you can skip, hide, or save to your account. If you click on the sign up/login button you will be prompted with fields to either sign up, or login. Once signed in you can view your personal profile. In your profile you can see animes that you have saved, aswell as delete animes from your favorites list. If you click on the home button you will return to the home page where can continue to search for new animes.
+![alt text](images/anivault-ss3.png)
+Once I login or sign up I am presented with the home page and a variety of buttons that allow me to choose from several different genres.
+
+![alt text](images/anivault-ss4.png)
+If I click on one of the genre buttons I am presented with details of a random anime. I can see the title, air date, star rating, rating, all of the genres it falls under, and a description. I am also given a NEXT button to go to the next anime, a HIDE button to hide the current anime so that it won't be shown again, and a BACK button to go to the previous anime.
+
 
 ## Credits
 
