@@ -2,7 +2,7 @@ import { ApolloClient, InMemoryCache, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 
 const httpLink = createHttpLink({
-  uri: process.env.REACT_APP_GRAPHQL_ENDPOINT || 'http://anivault.onerender.com/graphql', // Use environment variable for endpoint
+  uri: process.env.REACT_APP_GRAPHQL_ENDPOINT || 'https://anivault.onerender.com/graphql', // Use environment variable for endpoint
 });
 
 const authLink = setContext((_, { headers }) => {
