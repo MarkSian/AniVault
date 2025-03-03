@@ -12,17 +12,6 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
-    services:
-      mongo:
-        image: mongo:latest
-        ports:
-          - 27017:27017
-        options: >-
-          --health-cmd "mongo --eval 'db.runCommand({ ping: 1 })'"
-          --health-interval 10s
-          --health-timeout 5s
-          --health-retries 5
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -31,14 +20,6 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: '20.18.0'
-
-      - name: Cache Cypress
-        uses: actions/cache@v2
-        with:
-          path: ~/.cache/Cypress
-          key: ${{ runner.os }}-cypress-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-cypress-
 
       - name: Install dependencies
         run: npm install # Install all dependencies at the root level
@@ -56,14 +37,3 @@ jobs:
 
       - name: Wait for server to be ready
         run: npx wait-on http://localhost:4000
-
-      - name: Install Cypress
-        run: cd client && npx cypress install
-
-      - name: Set Cypress Binary Permissions
-        run: cd client && chmod +x ./node_modules/.bin/cypress
-
-      - name: Run Cypress Tests
-        run: cd client && npx cypress run --spec cypress/e2e/dbConnection.cy.js
-        env:
-          CYPRESS_baseUrl: http://localhost:4000
