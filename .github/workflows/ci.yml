@@ -18,7 +18,7 @@ jobs:
         ports:
           - 27017:27017
         options: >-
-          --health-cmd "mongo --eval 'db.runCommand({ ping: 1 })'"
+          --health-cmd "echo 'db.runCommand({ ping: 1 })' | mongo"
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
@@ -40,6 +40,9 @@ jobs:
 
       - name: Install client dependencies
         run: cd client && npm install
+
+      - name: Check MongoDB logs
+        run: docker logs $(docker ps -q -f name=mongo)
 
       - name: Run testDBConnection.ts
         run: npx ts-node server/src/scripts/testDBConnection.ts
