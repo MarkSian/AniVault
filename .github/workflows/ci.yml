@@ -34,6 +34,3 @@ jobs:
         run: cd server && npm run start &
         env:
           MONGODB_URI: mongodb://localhost:27017/mydatabase
-
-      - name: Wait for server to be ready
-        run: npx wait-on http://localhost:4000
