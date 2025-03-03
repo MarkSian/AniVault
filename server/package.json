@@ -4,7 +4,7 @@
   "description": "A backend server for managing movies using GraphQL, Node.js, Express, and MongoDB.",
   "main": "src/index.ts",
   "scripts": {
-    "start": "node --max-old-space-size=4096 -r ts-node/register src/index.ts", 
+    "start": "node --max-old-space-size=4096 -r ts-node/register src/index.ts",
     "build": "tsc",
     "dev": "ts-node-dev src/index.ts",
     "populate-database": "ts-node src/scripts/populateDB.ts"
@@ -14,6 +14,7 @@
     "@graphql-tools/schema": "^10.0.20",
     "@types/bcryptjs": "^2.4.6",
     "@types/pg": "^8.11.11",
+    "apollo-server-caching": "^3.3.0",
     "apollo-server-express": "^3.0.0",
     "axios": "^1.7.9",
     "bcryptjs": "^3.0.2",

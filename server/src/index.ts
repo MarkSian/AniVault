@@ -8,6 +8,7 @@ import dotenv from 'dotenv';
 import { authenticateToken } from './middleware/auth';
 import path from 'path';
 import cors from 'cors'; // Import cors
+import { InMemoryLRUCache } from 'apollo-server-caching'; // Import InMemoryLRUCache
 
 // Load environment variables from .env file
 dotenv.config();
