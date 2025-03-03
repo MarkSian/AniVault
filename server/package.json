@@ -4,7 +4,7 @@
   "description": "A backend server for managing movies using GraphQL, Node.js, Express, and MongoDB.",
   "main": "src/index.ts",
   "scripts": {
-    "start": "ts-node src/index.ts",
+    "start": "node --max-old-space-size=4096 src/index.js",
     "build": "tsc",
     "dev": "ts-node-dev src/index.ts",
     "populate-database": "ts-node src/scripts/populateDB.ts"
