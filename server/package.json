@@ -4,12 +4,10 @@
   "description": "A backend server for managing movies using GraphQL, Node.js, Express, and MongoDB.",
   "main": "src/index.ts",
   "scripts": {
-    "start": "node --max-old-space-size=4096 server/dist/index.js",
+    "start": "node --max-old-space-size=4096 -r ts-node/register src/index.ts", 
     "build": "tsc",
     "dev": "ts-node-dev src/index.ts",
     "populate-database": "ts-node src/scripts/populateDB.ts"
-    
-
   },
   "dependencies": {
     "@graphql-tools/merge": "^9.0.21",
